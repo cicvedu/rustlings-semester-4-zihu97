@@ -1,12 +1,12 @@
 # INTRO
 
-# [[exercises]]
-# name = "intro1"
-# path = "exercises/intro/intro1.rs"
-# mode = "compile"
-# hint = """
-# Remove the I AM NOT DONE comment in the exercises/intro/intro1.rs file
-# to move on to the next exercise."""
+[[exercises]]
+name = "intro1"
+path = "exercises/intro/intro1.rs"
+mode = "compile"
+hint = """
+Remove the I AM NOT DONE comment in the exercises/intro/intro1.rs file
+to move on to the next exercise."""
 
 [[exercises]]
 name = "intro2"
@@ -1221,3 +1221,64 @@ name = "tests9"
 path = "exercises/tests/tests9.rs"
 mode = "test"
 hint = "No hints this time!"
+
+[[exercises]]
+name = "algorithm1"
+path = "exercises/algorithm/algorithm1.rs"
+mode = "test"
+hint = "No hints this time!"
+
+[[exercises]]
+name = "algorithm2"
+path = "exercises/algorithm/algorithm2.rs"
+mode = "test"
+hint = "No hints this time!"
+
+[[exercises]]
+name = "algorithm3"
+path = "exercises/algorithm/algorithm3.rs"
+mode = "test"
+hint = "No hints this time!"
+
+[[exercises]]
+name = "algorithm4"
+path = "exercises/algorithm/algorithm4.rs"
+mode = "test"
+hint = "No hints this time!"
+
+[[exercises]]
+name = "algorithm5"
+path = "exercises/algorithm/algorithm5.rs"
+mode = "test"
+hint = "No hints this time!"
+
+[[exercises]]
+name = "algorithm6"
+path = "exercises/algorithm/algorithm6.rs"
+mode = "test"
+hint = "No hints this time!"
+
+[[exercises]]
+name = "algorithm7"
+path = "exercises/algorithm/algorithm7.rs"
+mode = "test"
+hint = "No hints this time!"
+
+[[exercises]]
+name = "algorithm8"
+path = "exercises/algorithm/algorithm8.rs"
+mode = "test"
+hint = "No hints this time!"
+
+[[exercises]]
+name = "algorithm9"
+path = "exercises/algorithm/algorithm9.rs"
+mode = "test"
+hint = "No hints this time!"
+
+[[exercises]]
+name = "algorithm10"
+path = "exercises/algorithm/algorithm10.rs"
+mode = "test"
+hint = "No hints this time!"
+

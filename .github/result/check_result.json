@@ -1,5 +1,8 @@
 {
   "exercises": [
+    { "name": "intro1",
+      "result": false
+    },
     {
       "name": "intro2",
       "result": false
@@ -399,13 +402,43 @@
     {
       "name": "hashmaps3",
       "result": false
+    },
+    { "name": "algorithm1",
+      "result": false
+    },
+    { "name": "algorithm2",
+      "result": false
+    },
+    { "name": "algorithm3",
+      "result": false
+    },
+    { "name": "algorithm4",
+      "result": false
+    },
+    { "name": "algorithm5",
+      "result": false
+    },
+    { "name": "algorithm6",
+      "result": false
+    },
+    { "name": "algorithm7",
+      "result": false
+    },
+    { "name": "algorithm8",
+      "result": false
+    },
+    { "name": "algorithm9",
+      "result": false
+    },
+    { "name": "algorithm10",
+      "result": false
     }
   ],
   "user_name": null,
   "statistics": {
-    "total_exercations": 100,
+    "total_exercations": 111,
     "total_succeeds": 0,
-    "total_failures": 100,
+    "total_failures": 111,
     "total_time": 3
   }
 }
