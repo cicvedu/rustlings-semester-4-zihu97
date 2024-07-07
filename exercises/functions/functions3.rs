@@ -5,7 +5,7 @@
 
 
 fn main() {
-    call_me(10000000);
+    call_me(1);
 }
 
 fn call_me(num: u32) {
