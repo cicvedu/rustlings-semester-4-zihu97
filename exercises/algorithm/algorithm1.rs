@@ -2,7 +2,6 @@
 	single linked list merge
 	This problem requires you to merge two ordered singly linked lists into one ordered singly linked list
 */
-// I AM NOT DONE
 
 use std::fmt::{self, Display, Formatter};
 use std::ptr::NonNull;
@@ -69,14 +68,73 @@ impl<T> LinkedList<T> {
             },
         }
     }
+}
+
+// 递归
+/*
+impl<T: PartialOrd + Copy> LinkedList<T> {
 	pub fn merge(list_a:LinkedList<T>,list_b:LinkedList<T>) -> Self
 	{
-		//TODO
-		Self {
-            length: 0,
-            start: None,
-            end: None,
+        if list_a.length == 0 {
+            return list_b;
         }
+        if list_b.length == 0 {
+            return list_a;
+        }
+        let a_node = list_a.start;
+        let b_node = list_b.start;
+        let mut ans = LinkedList::<T>::new();
+        let a_val = unsafe { (*a_node.unwrap().as_ptr()).val };
+        let b_val = unsafe { (*b_node.unwrap().as_ptr()).val };
+        if a_val < b_val {
+            ans.add(a_val);
+            let mut list_a = list_a;
+            list_a.length -= 1;
+            list_a.start = unsafe { (*a_node.unwrap().as_ptr()).next };
+            let list_c = Self::merge(list_a, list_b);
+            ans.length = list_c.length + 1;
+            unsafe { (*ans.start.unwrap().as_ptr()).next = list_c.start };
+        } else {
+            ans.add(b_val);
+            let mut list_b = list_b;
+            list_b.length -= 1;
+            list_b.start = unsafe { (*b_node.unwrap().as_ptr()).next };
+            let list_c = Self::merge(list_a, list_b);
+            ans.length = list_c.length + 1;
+            unsafe { (*ans.start.unwrap().as_ptr()).next = list_c.start };
+        }
+        ans
+	}
+}
+*/
+
+// 迭代
+impl<T: PartialOrd + Copy> LinkedList<T> {
+	pub fn merge(list_a:LinkedList<T>,list_b:LinkedList<T>) -> Self
+	{
+        let mut a_node = list_a.start;
+        let mut b_node = list_b.start;
+        let mut ans = LinkedList::<T>::new();
+        while a_node.is_some() && b_node.is_some() {
+            let a_val = unsafe { a_node.unwrap().as_ref().val };
+            let b_val = unsafe { b_node.unwrap().as_ref().val };
+            if (a_val < b_val) {
+                ans.add(a_val);
+                a_node = unsafe { a_node.unwrap().as_ref().next };
+            } else {
+                ans.add(b_val);
+                b_node = unsafe { b_node.unwrap().as_ref().next };
+            }
+        }
+        if b_node.is_some() {
+            std::mem::swap(&mut a_node, &mut b_node);
+        }
+        while a_node.is_some() {
+            let a_val = unsafe { a_node.unwrap().as_ref().val };
+            ans.add(a_val);
+            a_node = unsafe { a_node.unwrap().as_ref().next };
+        } 
+        ans
 	}
 }
 

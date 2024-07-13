@@ -2,7 +2,6 @@
 	heap
 	This question requires you to implement a binary heap function
 */
-// I AM NOT DONE
 
 use std::cmp::Ord;
 use std::default::Default;
@@ -37,7 +36,33 @@ where
     }
 
     pub fn add(&mut self, value: T) {
-        //TODO
+        self.count += 1;
+        self.items.push(value);
+        // root节点index为1，不能为0，可以模拟试下，当前items已经有一个元素了
+        let n = self.count;
+        self.heapify_up(n);
+    }
+
+    fn heapify_up(&mut self, mut index: usize) {
+        while index > 1 {
+            let pnode = self.parent_idx(index);
+            if !(self.comparator)(&self.items[index], &self.items[pnode]) {
+                break;
+            }
+            self.items.swap(index, pnode);
+            index = pnode;
+        }
+    }
+
+    fn heapify_down(&mut self, mut index: usize) {
+        while self.children_present(index) {
+            let pnode = self.left_child_idx(index);
+            if !(self.comparator)(&self.items[pnode], &self.items[index]) {
+                break;
+            }
+            self.items.swap(index, pnode);
+            index = pnode;
+        }
     }
 
     fn parent_idx(&self, idx: usize) -> usize {
@@ -57,8 +82,13 @@ where
     }
 
     fn smallest_child_idx(&self, idx: usize) -> usize {
-        //TODO
-		0
+        let l = self.left_child_idx(idx);
+        let r = self.right_child_idx(idx);
+        if r > self.count || (self.comparator)(&self.items[l], &self.items[r]) {
+            l
+        } else {
+            r
+        }
     }
 }
 
@@ -84,8 +114,13 @@ where
     type Item = T;
 
     fn next(&mut self) -> Option<T> {
-        //TODO
-		None
+        if self.is_empty() {
+            return None
+        }
+        let ans = self.items.swap_remove(1);
+        self.count -= 1;
+        self.heapify_down(1);
+		Some(ans)
     }
 }
 

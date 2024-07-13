@@ -3,7 +3,6 @@
 	This problem requires you to implement a basic interface for a binary tree
 */
 
-//I AM NOT DONE
 use std::cmp::Ordering;
 use std::fmt::Debug;
 
@@ -37,7 +36,36 @@ where
             right: None,
         }
     }
+
+    // Insert a value into the tree
+    fn insert(&mut self, value: T) {
+        match &self.value.cmp(&value) {
+            Ordering::Less => {
+                match &mut self.left {
+                    Some(node) => node.insert(value),
+                    _ => self.left = Some(Box::new(TreeNode::<T>::new(value))),
+                }
+            },
+            Ordering::Greater => {
+                match &mut self.right {
+                    Some(node) => node.insert(value),
+                    _ => self.right = Some(Box::new(TreeNode::<T>::new(value))),
+                }
+            },
+            _ => {},
+        }
+    }
+
+    // Search for a value in the tree
+    fn search(&self, value: T) -> bool {
+        match &self.value.cmp(&value) {
+            Ordering::Less => self.left.as_ref().map_or(false, |n| n.search(value)),
+            Ordering::Greater => self.right.as_ref().map_or(false, |n| n.search(value)),
+            _ => true,
+        }
+    }
 }
+
 
 impl<T> BinarySearchTree<T>
 where
@@ -50,26 +78,20 @@ where
 
     // Insert a value into the BST
     fn insert(&mut self, value: T) {
-        //TODO
+        match &mut self.root {
+            Some(root) => root.insert(value),
+            _ => self.root = Some(Box::new(TreeNode::<T>::new(value))),
+        }
     }
 
     // Search for a value in the BST
     fn search(&self, value: T) -> bool {
-        //TODO
-        true
+        match &self.root {
+            Some(root) => root.search(value),
+            _ => false,
+        }
     }
 }
-
-impl<T> TreeNode<T>
-where
-    T: Ord,
-{
-    // Insert a node into the tree
-    fn insert(&mut self, value: T) {
-        //TODO
-    }
-}
-
 
 #[cfg(test)]
 mod tests {
